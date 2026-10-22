@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="CodeSprint: um quiz interativo de HTML, CSS e JavaScript com desafios, cronômetro e histórico de desempenho." />
+  <meta property="og:title" content="CodeSprint | Desafie seus conhecimentos" />
+  <meta property="og:description" content="Um quiz interativo de desenvolvimento web, feito com HTML, CSS e JavaScript." />
+  <title>CodeSprint — Desafie seus conhecimentos</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#inicio" aria-label="CodeSprint, voltar ao início">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span>code<span class="brand-accent">sprint</span><span class="brand-dot">.</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#arena">Arena</a>
+        <a href="#como-funciona">Como funciona</a>
+      </nav>
+      <span class="nav-status"><span class="status-dot"></span> PROJETO INTERATIVO</span>
+    </div>
+  </header>
+
+  <main class="container" id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse-dot"></span> APRENDA JOGANDO • WEB DEVELOPMENT</div>
+        <h1 id="hero-title">Aprender código<br />também pode ser <span class="gradient-text">divertido.</span></h1>
+        <p>Coloque seus conhecimentos à prova em desafios de HTML, CSS e JavaScript. Escolha o nível, responda às perguntas e acompanhe sua evolução.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#arena">Começar desafio <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-quiet" href="#como-funciona">Como funciona <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-mini"><span class="mini-check">✓</span> Gratuito <span class="mini-separator"></span> <span class="mini-check">✓</span> Sem cadastro <span class="mini-separator"></span> <span class="mini-check">✓</span> Progresso local</div>
+      </div>
+
+      <div class="hero-visual" aria-label="Prévia ilustrativa do quiz CodeSprint">
+        <div class="orbit orbit-one" aria-hidden="true"></div>
+        <div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="floating-tag floating-tag-html"><span class="tech-symbol html-symbol">&lt;&gt;</span> HTML</div>
+        <div class="floating-tag floating-tag-css"><span class="tech-symbol css-symbol">#</span> CSS</div>
+        <div class="floating-tag floating-tag-js"><span class="tech-symbol js-symbol">JS</span> JavaScript</div>
+        <div class="code-window">
+          <div class="code-window-header"><div class="window-dots"><i></i><i></i><i></i></div><span>hello-world.js</span><span class="window-brackets">⌘</span></div>
+          <div class="code-window-body" aria-hidden="true">
+            <p><span class="line-no">01</span> <span class="syntax-purple">const</span> dev = {</p>
+            <p><span class="line-no">02</span> &nbsp; name: <span class="syntax-yellow">'Você'</span>,</p>
+            <p><span class="line-no">03</span> &nbsp; skills: [<span class="syntax-green">'HTML'</span>,</p>
+            <p><span class="line-no">04</span> &nbsp; &nbsp; <span class="syntax-green">'CSS'</span>, <span class="syntax-green">'JS'</span>],</p>
+            <p><span class="line-no">05</span> &nbsp; mindset: <span class="syntax-yellow">'evoluir'</span></p>
+            <p><span class="line-no">06</span> };</p>
+            <p><span class="line-no">07</span> &nbsp;</p>
+            <p><span class="line-no">08</span> <span class="syntax-purple">console</span>.<span class="syntax-blue">log</span>(dev.skills);</p>
+          </div>
+          <div class="code-window-footer"><span class="footer-live-dot"></span> Compilando conhecimento... <span>UTF-8</span></div>
+        </div>
+        <div class="visual-shine" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Seu histórico de desafios">
+      <div class="stat-item"><div class="stat-icon purple-icon" aria-hidden="true">◎</div><div><div class="stat-value" id="stat-rounds">0</div><div class="stat-label">Desafios concluídos</div></div></div>
+      <div class="stat-item"><div class="stat-icon cyan-icon" aria-hidden="true">⌁</div><div><div class="stat-value" id="stat-accuracy">0%</div><div class="stat-label">Taxa de acertos</div></div></div>
+      <div class="stat-item"><div class="stat-icon orange-icon" aria-hidden="true">⚡</div><div><div class="stat-value" id="stat-best">0</div><div class="stat-label">Melhor pontuação</div></div></div>
+      <div class="stat-item stat-motivation"><div class="stat-badge">✦</div><div><strong>Um desafio de cada vez.</strong><span>A consistência faz a diferença.</span></div></div>
+    </section>
+
+    <section class="arena-section" id="arena" aria-labelledby="arena-title">
+      <div class="section-heading"><div><div class="overline">01 / SUA ARENA</div><h2 id="arena-title">Escolha o seu <span class="muted-heading">desafio.</span></h2><p>Personalize a sessão e comece quando quiser.</p></div><div class="heading-decoration" aria-hidden="true">{ ... }</div></div>
+
+      <div id="setup-view" class="setup-panel">
+        <div class="setup-main">
+          <div class="field-top"><h3>Qual tecnologia?</h3><span>01 DE 03</span></div>
+          <div class="topic-grid" id="topic-options" role="group" aria-label="Tecnologia">
+            <button type="button" class="topic-card active" data-topic="mix" aria-pressed="true"><span class="topic-icon mix-icon">✦</span><strong>Mix</strong><small>Um pouco de tudo</small><span class="topic-check" aria-hidden="true">✓</span></button>
+            <button type="button" class="topic-card" data-topic="html" aria-pressed="false"><span class="topic-icon html-icon">&lt;/&gt;</span><strong>HTML</strong><small>Estrutura web</small><span class="topic-check" aria-hidden="true">✓</span></button>
+            <button type="button" class="topic-card" data-topic="css" aria-pressed="false"><span class="topic-icon css-icon">#</span><strong>CSS</strong><small>Estilos e layout</small><span class="topic-check" aria-hidden="true">✓</span></button>
+            <button type="button" class="topic-card" data-topic="js" aria-pressed="false"><span class="topic-icon javascript-icon">JS</span><strong>JavaScript</strong><small>Lógica e interação</small><span class="topic-check" aria-hidden="true">✓</span></button>
+          </div>
+
+          <div class="setup-divide"></div>
+          <div class="field-top"><h3>Qual dificuldade?</h3><span>02 DE 03</span></div>
+          <div class="select-row" id="level-options" role="group" aria-label="Dificuldade">
+            <button type="button" class="choice-pill active" data-level="beginner" aria-pressed="true"><span class="pill-symbol green-text">◉</span> Iniciante</button>
+            <button type="button" class="choice-pill" data-level="intermediate" aria-pressed="false"><span class="pill-symbol orange-text">◆</span> Intermediário</button>
+          </div>
+
+          <div class="setup-divide"></div>
+          <div class="field-top"><h3>Escolha o modo</h3><span>03 DE 03</span></div>
+          <div class="select-row" id="mode-options" role="group" aria-label="Modo do quiz">
+            <button type="button" class="choice-pill active" data-mode="classic" aria-pressed="true"><span class="pill-symbol purple-text">◎</span> Sem cronômetro</button>
+            <button type="button" class="choice-pill" data-mode="timed" aria-pressed="false"><span class="pill-symbol cyan-text">◷</span> 25s por pergunta</button>
+          </div>
+        </div>
+        <aside class="setup-side" aria-label="Resumo do desafio">
+          <div class="side-kicker"><span class="mini-sparkle">✦</span> SEU PRÓXIMO DESAFIO</div>
+          <div class="side-illustration" aria-hidden="true"><span>{</span><span class="side-bolt">⚡</span><span>}</span></div>
+          <h3>Preparado para testar seus conhecimentos?</h3>
+          <p>6 perguntas selecionadas a cada rodada. Acerte, aprenda com as explicações e supere seu recorde.</p>
+          <div class="session-detail"><span>PERGUNTAS</span><strong>06</strong></div>
+          <div class="session-detail"><span>TEMPO</span><strong id="session-time">Livre</strong></div>
+          <div class="session-detail"><span>TECNOLOGIA</span><strong id="session-topic">Misto</strong></div>
+          <button type="button" class="btn btn-primary btn-full" id="start-button">Iniciar desafio <span aria-hidden="true">→</span></button>
+        </aside>
+      </div>
+
+      <div id="quiz-view" class="quiz-panel hidden" aria-live="off">
+        <div class="quiz-header"><div><span class="overline">DESAFIO EM ANDAMENTO</span><h3 id="quiz-topic-label">HTML · Iniciante</h3></div><div class="quiz-header-right"><span class="score-pill" id="live-score">✦ 0 pontos</span><button type="button" class="btn btn-quiet btn-small" id="exit-button">Sair</button></div></div>
+        <div class="quiz-progress-top"><span id="question-count">Pergunta 1 de 6</span><span id="timer-label">Sem limite de tempo</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Progresso do desafio" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="quiz-progress"><div class="progress-fill" id="quiz-progress-fill"></div></div>
+        <div class="question-tag" id="question-tag">HTML</div>
+        <h3 class="question-title" id="question-title"></h3>
+        <p class="question-hint">Selecione a alternativa correta. Você também pode usar as teclas 1 a 4.</p>
+        <div class="answers-grid" id="answers-container" role="group" aria-label="Alternativas da pergunta"></div>
+        <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+        <div class="quiz-bottom"><span id="quiz-tip">Cada resposta certa vale 100 pontos.</span><button type="button" class="btn btn-primary" id="next-button" disabled>Próxima pergunta <span aria-hidden="true">→</span></button></div>
+      </div>
+
+      <div id="result-view" class="result-panel hidden" aria-live="polite">
+        <div class="result-orbit" aria-hidden="true">✦</div>
+        <div class="overline">DESAFIO CONCLUÍDO</div>
+        <h3 id="result-title">Mandou bem!</h3>
+        <p id="result-subtitle">Cada rodada é uma oportunidade de melhorar.</p>
+        <div class="result-score"><strong id="result-points">0</strong><span>pontos</span></div>
+        <div class="result-stats"><div><strong id="result-correct">0/6</strong><span>Respostas corretas</span></div><div><strong id="result-percent">0%</strong><span>Aproveitamento</span></div><div><strong id="result-record">—</strong><span>Recorde pessoal</span></div></div>
+        <div class="result-actions"><button type="button" class="btn btn-primary" id="replay-button">Jogar novamente <span aria-hidden="true">↗</span></button><button type="button" class="btn btn-quiet" id="home-button">Alterar desafio</button></div>
+        <div class="review-box"><h4>Revise as perguntas</h4><p>Relembre as respostas e entenda cada conceito.</p><div id="review-list" class="review-list"></div></div>
+      </div>
+    </section>
+
+    <section class="how-section" id="como-funciona" aria-labelledby="how-title"><div class="section-heading"><div><div class="overline">02 / COMO FUNCIONA</div><h2 id="how-title">Simples de começar. <span class="muted-heading">Bom para evoluir.</span></h2></div></div><div class="how-grid"><div class="how-card"><div class="how-number">01</div><div class="how-emoji">◈</div><h3>Escolha seu foco</h3><p>Pratique HTML, CSS, JavaScript ou misture os três em uma sessão.</p></div><div class="how-card"><div class="how-number">02</div><div class="how-emoji">⌘</div><h3>Responda e aprenda</h3><p>Receba o resultado de cada resposta e uma explicação do conceito.</p></div><div class="how-card"><div class="how-number">03</div><div class="how-emoji">↗</div><h3>Acompanhe sua evolução</h3><p>Suas rodadas, acertos e recordes ficam salvos neste navegador.</p></div></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><span class="brand footer-brand">&lt;/&gt; <span>codesprint<span class="brand-dot">.</span></span></span><span>Projeto de portfólio • HTML, CSS & JavaScript</span><span>Feito para aprender na prática ✦</span></div></footer>
+</body>
+</html>
